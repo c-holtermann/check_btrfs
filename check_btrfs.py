@@ -2,7 +2,7 @@
 # Von https://pythonhosted.org/NagAconda/plugin.html
 from NagAconda import Plugin
 import os
-import subprocess 
+import subprocess
 from pyparsing import *
 
 btrfs_check = Plugin("Plugin to show disk usage of btrfs.", "0.1")
@@ -15,7 +15,7 @@ btrfs_check.start()
 
 btrfs_output = subprocess.check_output(["btrfs", "fi", "df", btrfs_check.options.mountpoint])
 
-# DEBUG: 
+# DEBUG:
 # print btrfs_output
 
 # PyParsing definitions
@@ -86,6 +86,8 @@ btrfs_check.set_value("system2_total", btrfs_output_parsed.system2.bytesize_tota
 
 btrfs_check.set_value("metadata_used", btrfs_output_parsed.metadata.bytesize_used.num, scale=btrfs_output_parsed.metadata.bytesize_used.unit, threshold=2)
 btrfs_check.set_value("metadata_total", btrfs_output_parsed.metadata.bytesize_total.num, scale=btrfs_output_parsed.metadata.bytesize_total.unit, threshold=2)
+
+btrfs_check.set_status_message("Hello World!")
 
 btrfs_check.finish()
 
