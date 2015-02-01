@@ -55,7 +55,8 @@ def calc_bnumber(bnum):
 
 data_bytes_used_float = calc_bnumber(btrfs_output_parsed.data.bytesize_used)
 data_bytes_size_float = calc_bnumber(btrfs_output_parsed.data.bytesize_total)
-data_usage_percentage_float = data_bytes_used_float / data_bytes_size_float * 100.0
+data_usage_ratio_float = data_bytes_used_float / data_bytes_size_float
+data_usage_percentage_float = data_usage_ratio_float * 100.0
 
 system1_bytes_used_float = calc_bnumber(btrfs_output_parsed.system1.bytesize_used)
 system1_bytes_size_float = calc_bnumber(btrfs_output_parsed.system1.bytesize_total)
@@ -87,7 +88,7 @@ btrfs_check.set_value("system2_total", btrfs_output_parsed.system2.bytesize_tota
 btrfs_check.set_value("metadata_used", btrfs_output_parsed.metadata.bytesize_used.num, scale=btrfs_output_parsed.metadata.bytesize_used.unit, threshold=2)
 btrfs_check.set_value("metadata_total", btrfs_output_parsed.metadata.bytesize_total.num, scale=btrfs_output_parsed.metadata.bytesize_total.unit, threshold=2)
 
-btrfs_check.set_status_message("{0}{1} of {2}{3} used ({4}%)".format(btrfs_output_parsed.data.bytesize_used.num, btrfs_output_parsed.data.bytesize_used.unit, btrfs_output_parsed.data.bytesize_total.num, btrfs_output_parsed.data.bytesize_total.unit, data_usage_percentage_float ))
+btrfs_check.set_status_message("{0}{1} of {2}{3} used ({4:.2%})".format(btrfs_output_parsed.data.bytesize_used.num, btrfs_output_parsed.data.bytesize_used.unit, btrfs_output_parsed.data.bytesize_total.num, btrfs_output_parsed.data.bytesize_total.unit, data_usage_ratio_float ))
 
 btrfs_check.finish()
 
