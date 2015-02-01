@@ -87,7 +87,7 @@ btrfs_check.set_value("system2_total", btrfs_output_parsed.system2.bytesize_tota
 btrfs_check.set_value("metadata_used", btrfs_output_parsed.metadata.bytesize_used.num, scale=btrfs_output_parsed.metadata.bytesize_used.unit, threshold=2)
 btrfs_check.set_value("metadata_total", btrfs_output_parsed.metadata.bytesize_total.num, scale=btrfs_output_parsed.metadata.bytesize_total.unit, threshold=2)
 
-btrfs_check.set_status_message("Hello World!")
+btrfs_check.set_status_message("{0}{1} of {2}{3} used ({4}%)".format(btrfs_output_parsed.data.bytesize_used.num, btrfs_output_parsed.data.bytesize_used.unit, btrfs_output_parsed.data.bytesize_total.num, btrfs_output_parsed.data.bytesize_total.unit, data_usage_percentage_float ))
 
 btrfs_check.finish()
 
